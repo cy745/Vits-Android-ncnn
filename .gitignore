@@ -16,3 +16,6 @@ local.properties
 
 # Project exclude paths
 /app/build/
+/app/src/main/assets/open_jtalk_dic_utf_8-1.11/
+/.idea/
+/app/release/
