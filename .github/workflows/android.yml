@@ -24,7 +24,7 @@ jobs:
       run: |
         wget https://github.com/Tencent/ncnn/releases/download/20221128/ncnn-20221128-android-vulkan.zip
         unzip ./ncnn-20221128-android-vulkan.zip
-        cp -f ./ncnn-20221128-android-vulkan ./app/src/main/cpp/ncnn
+        cp -r -f ./ncnn-20221128-android-vulkan ./app/src/main/cpp/ncnn
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
