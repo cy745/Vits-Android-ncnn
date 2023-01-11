@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'de.undercouch.download'
 }
 
 android {
@@ -37,6 +38,32 @@ android {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
             version '3.18.1'
+        }
+    }
+}
+
+TaskExecutionGraph taskGraph = gradle.getTaskGraph()
+taskGraph.whenReady {
+    taskGraph.allTasks.get(0).doFirst {
+        def targetSrc = 'https://ghproxy.com/https://github.com/Tencent/ncnn/releases/download/20221128/ncnn-20221128-android-vulkan.zip'
+        def zipDest = new File(buildDir, 'ncnn-20221128-android-vulkan.zip')
+        def unzippedDir = new File(buildDir, 'ncnn-20221128-android-vulkan')
+        def targetDir = new File(rootDir, 'libs/src/main/cpp/ncnn')
+
+        download {
+            src targetSrc
+            dest zipDest
+            overwrite false
+        }
+
+        copy {
+            from zipTree(zipDest)
+            into buildDir
+        }
+
+        copy {
+            from unzippedDir
+            into targetDir
         }
     }
 }

@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.moereng"
         minSdk 24
-        targetSdk 29
+        targetSdk 33
         versionCode 2
         versionName "1.1"
 
